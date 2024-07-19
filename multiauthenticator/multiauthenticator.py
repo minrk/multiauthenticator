@@ -115,6 +115,9 @@ class MultiAuthenticator(Authenticator):
             authenticator = WrapperAuthenticator(**authenticator_configuration)
 
             if service_name is not None:
+                self.log.warning(
+                    "service_name is deprecated, please create a subclass and set the login_service class variable"
+                )
                 if PREFIX_SEPARATOR in service_name:
                     raise ValueError(f"Service name cannot contain {PREFIX_SEPARATOR}")
                 authenticator.service_name = service_name
